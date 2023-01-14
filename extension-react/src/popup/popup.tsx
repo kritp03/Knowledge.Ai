@@ -8,6 +8,37 @@ import { setStorage, getStorage } from "../utils/storage";
 
 const BACKEND_URL = "http://3.0.100.46:8000/";
 
+interface historyBoxProps {
+  text?: string;
+  status?: string;
+  date?: string;
+}
+
+const HistoryBox = ({
+  text = "placeholder",
+  status = "Processing",
+  date = "date placeholder",
+}: historyBoxProps) => {
+  return (
+    <div className="history-box">
+      <div className="ellipsis history-box-sub1">
+        This is a very long long long long long lomng long
+        fadsjfalsdjfaslkdjfas;lfdjas;djf text
+      </div>
+      <div className="history-box-sub2 d-flex justify-content-between gap-1 margin-top-1">
+        <div>Scanning Time</div>
+        {status == "Processing" && (
+          <div className="px-1 status-processing">Processing</div>
+        )}
+
+        {status == "Processed" && (
+          <div className="px-1 status-processed">Processed</div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const App: React.FC<{}> = () => {
   const [text, setText] = useState("");
   const [email, setEmail] = useState("");
@@ -218,29 +249,11 @@ const App: React.FC<{}> = () => {
 
       <div className="history-title">History</div>
 
-      <div className="history-box ">
-        <div className="ellipsis history-box-sub1">
-          This is a very long long long long long lomng long
-          fadsjfalsdjfaslkdjfas;lfdjas;djf text
-        </div>
-        <div className="history-box-sub2">
-          Processing
-        </div>
-      </div>
+      <HistoryBox text="dkfaj;dsfkja;dskfjas;ldfjaslkdf" date="20-03-2021" status="Processing"/>
+      <HistoryBox text="dkfaj;dsfkja;dskfjas;ldfjaslkdf" date="20-03-2021" status="Processed"/>
+      <HistoryBox text="dkfaj;dsfkja;dskfjas;ldfjaslkdf" date="20-03-2021" status="Processed"/>
 
-      <div className="history-box ">
-        <div className="ellipsis history-box-sub1">
-          This is a very long long long long long lomng long
-          fadsjfalsdjfaslkdjfas;lfdjas;djf text
-        </div>
-      </div>
-
-      <div className="history-box ">
-        <div className="ellipsis history-box-sub1">
-          This is a very long long long long long lomng long
-          fadsjfalsdjfaslkdjfas;lfdjas;djf text
-        </div>
-      </div>
+    
 
       <div className="text-center theme-color">See All..</div>
     </div>

@@ -90,6 +90,10 @@ body {
   margin-bottom: 10px;
 }
 
+.history-box:hover {
+  box-shadow: 0 0 5px #adb5bd;
+}
+
 .history-box-sub1{
   border-radius: 10px;
   border-bottom: 1px solid #adb5bd;
@@ -99,5 +103,28 @@ body {
 }
 
 .history-box-sub2{
-  padding: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+
 }
+
+.margin-top-1{
+  margin-top: 2px;
+}
+
+.status-processed {
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.status-processing {
+  background-color: #de9e36;
+  color: white;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+

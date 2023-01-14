@@ -20,19 +20,19 @@ chrome.runtime.onInstalled.addListener((details) => {
   });
 
 /* A listener that is listening for the alarm to go off. */
-  chrome.alarms.onAlarm.addListener((alarm) => {
-    console.log("alarm", alarm);
+  // chrome.alarms.onAlarm.addListener((alarm) => {
+  //   console.log("alarm", alarm);
 
-    chrome.storage.local.get("auth_token", (res) => {
-      console.log("auth_token");
-      console.log(res);
-    });
+  //   chrome.storage.local.get("auth_token", (res) => {
+  //     console.log("auth_token");
+  //     console.log(res);
+  //   });
 
-    chrome.storage.local.get("user", (res) => {
-      console.log("user");
-      console.log(res);
-    });
-  });
+  //   chrome.storage.local.get("user", (res) => {
+  //     console.log("user");
+  //     console.log(res);
+  //   });
+  // });
 
   chrome.contextMenus.create({
     title: "Generate Mindmap",
@@ -41,7 +41,22 @@ chrome.runtime.onInstalled.addListener((details) => {
   });
 
   chrome.contextMenus.onClicked.addListener((event) => {
-    console.log(event);
+
+
+    chrome.storage.local.get("auth_token", (res) => {
+      if (res.auth_token !== '') {
+        console.log(event);
+        console.log(event.selectionText)
+        
+        let selectionText = event.selectionText
+
+        
+      }
+      else {
+        console.log("Please login to generate mindmap")
+      }
+    })
+
   });
 });
 
