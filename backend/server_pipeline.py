@@ -1,4 +1,3 @@
-# Import flask stuff here
 import time
 
 from re_pipeline import load_model, compute_span_boundary, create_relations, create_knowledge_base, create_map_from_kb
@@ -7,20 +6,16 @@ import os
 from dotenv import load_dotenv
 import json
 
-# load model and tokenizer
 tokenizer, model = load_model()
 
-# API to call pipeline and generate map
-# @route something
-def get_text(text): # Will have argument
+def get_text(text):
 
     tensor_ids, tensor_masks, spans_boundaries = compute_span_boundary(text, tokenizer)
     decoded_preds = create_relations(tensor_ids, tensor_masks, tokenizer, model)
     kb = create_knowledge_base(decoded_preds, spans_boundaries)
-    kb.print() # Test see result
-    # create_map_from_kb(kb) # Can specify file name too, if not default network.html
+    kb.print()
 
-    return kb # Will render template (network.html)
+    return kb
 
 
 load_dotenv()

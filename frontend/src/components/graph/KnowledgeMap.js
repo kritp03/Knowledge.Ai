@@ -50,9 +50,9 @@ function KnowledgeMap() {
             repulsion: {
                 centralGravity: 0.2,
                 damping: 0.09,
-                nodeDistance: 200,
+                nodeDistance: 240,
                 springConstant: 0.05,
-                springLength: 200
+                springLength: 240
             },
             solver: "repulsion",
             stabilization: {

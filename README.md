@@ -1,2 +1,2 @@
 # knowledge-graph-extension
-Test repo for knowledge graph extension 
+Repository for NUS Hack&Roll 2023

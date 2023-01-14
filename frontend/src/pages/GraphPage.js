@@ -129,7 +129,7 @@ function GraphPage() {
                             </Button>
                         </ThemeProvider>
                     </div>
-                    <div className='h-70'>
+                    <div className='h-7/10'>
                         <TextCard>
                             <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ marginRight: '30px' }}>
                                 <Title>Title of Text</Title>
