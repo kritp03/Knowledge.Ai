@@ -15,8 +15,10 @@ function Register() {
 
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
-      <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl ">
-        <h1 className="text-5xl font-black text-center m-2">Create Account </h1>
+      <div className="w-full p-6 m-auto bg-white rounded-xl shadow-md lg:max-w-xl ">
+        <div className="logoText text-center ">
+            <span className="theme-color">Knowledge</span>.Ai
+          </div>
         <h2 className="text-xl font-black text-center m-2">
           Create to enjoy the Knowledge.AI!
         </h2>

@@ -23,8 +23,10 @@ const LoginPage = () => {
 
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden min-w-[300px] md:w-full">
-      <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl ">
-        <h1 className="text-5xl font-black text-center m-2">Log In</h1>
+      <div className="w-full p-6 m-auto bg-white rounded-xl shadow-md lg:max-w-xl ">
+      <div className="logoText text-center ">
+            <span className="theme-color">Knowledge</span>.Ai
+          </div>
         <h2 className="text-xl font-black text-center m-2">
           Log in to enjoy the Knowledge.AI!
         </h2>

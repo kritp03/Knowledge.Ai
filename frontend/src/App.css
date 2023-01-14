@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
 * {
   font-family: 'Poppins', sans-serif;
+}
+
+
+
+.logoText {
+  font-family: 'Secular One', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.theme-color {
+  color: #7b2cbf;
 }
