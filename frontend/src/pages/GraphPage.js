@@ -14,6 +14,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DownloadIcon from '@mui/icons-material/Download';
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from 'axios';
+import Modal from '../components/graph/Modal';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL
 
@@ -103,6 +104,7 @@ const GraphPage = () => {
     const location = useLocation();
     const current_data_id = location.state.data_id
     const [data, setData] = useState({});
+    const [isModalOpen, setIsModalOpen] = useState(false);
     useEffect(() => {
         axios.get(`${BACKEND_URL}kge/history${current_data_id}`)
             .then(res => {
@@ -110,8 +112,17 @@ const GraphPage = () => {
             }).catch(err => { })
     }, [])
 
+const onClose = () => {
+    setIsModalOpen(false);
+}
+
+const onSubmit = () => {
+    setIsModalOpen(false);
+}
+
     return (
         <div className='flex flex-row w-full'>
+            {isModalOpen && <Modal isOpen={isModalOpen} onClose={onClose} onSubmit={onSubmit}/>}
             <div className='w-2/5 ml-5'>
                 <div className='flex flex-col h-screen'>
                     <div className='h-5'>
@@ -135,7 +146,7 @@ const GraphPage = () => {
                             </div>
                             <TitleDivider sx={{ borderBottomWidth: 0 }} className="absolute bottom-7" />
                             <Stack direction="row" className="justify-center">
-                                <ReportIssue className='absolute bottom-1'>Report an issue</ReportIssue>
+                                <ReportIssue className='absolute bottom-1 hover:cursor-pointer' onClick={() => {setIsModalOpen(true)}}>Report an issue</ReportIssue>
                             </Stack>
                         </TextCard>
                     </div>
