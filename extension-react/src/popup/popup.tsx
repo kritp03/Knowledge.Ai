@@ -4,6 +4,7 @@ import { render } from "react-dom";
 import "./popup.css";
 import "./bootstrap.min.css";
 import jwt_decode from "jwt-decode";
+import axios from "axios";
 import { setStorage, getStorage } from "../utils/storage";
 
 const BACKEND_URL = "http://3.0.100.46:8000/";
@@ -12,21 +13,20 @@ interface historyBoxProps {
   text?: string;
   status?: string;
   date?: string;
+  onClick?: () => void;
 }
 
 const HistoryBox = ({
   text = "placeholder",
   status = "Processing",
   date = "date placeholder",
+  onClick = () => {},
 }: historyBoxProps) => {
   return (
-    <div className="history-box">
-      <div className="ellipsis history-box-sub1">
-        This is a very long long long long long lomng long
-        fadsjfalsdjfaslkdjfas;lfdjas;djf text
-      </div>
+    <div className="history-box" onClick={onClick}>
+      <div className="ellipsis history-box-sub1">{text}</div>
       <div className="history-box-sub2 d-flex justify-content-between gap-1 margin-top-1">
-        <div>Scanning Time</div>
+        <div>{date}</div>
         {status == "Processing" && (
           <div className="px-1 status-processing">Processing</div>
         )}
@@ -79,6 +79,7 @@ const App: React.FC<{}> = () => {
       } else {
         setIsLoggedIn(true);
         getUserId();
+        loadHistory();
       }
     });
   };
@@ -86,6 +87,39 @@ const App: React.FC<{}> = () => {
   useEffect(() => {
     checkLogin();
   });
+
+  const [history, setHistory] = useState([]);
+
+  const loadHistory = () => {
+    getUserId();
+
+    axios
+      .get(`${BACKEND_URL}kge/`, { params: { user_id: userId } })
+      .then((res) => {
+        setHistory(res.data);
+        chrome.storage.local.set({
+          test: res.data,
+        });
+        let tempHistoryElement: any = [];
+        let currentList = res.data.reverse();
+        for (let i = 0; i < currentList.length; i++) {
+          tempHistoryElement.push(
+            <HistoryBox
+              text={currentList[i]["text"]}
+              date={currentList[i]["date"]}
+              status={currentList[i]["status"]}
+              onClick={handleDetail}
+            />
+          );
+        }
+        setHistoryElement(tempHistoryElement);
+      })
+      .catch((err) => {});
+  };
+
+  // const historyElement = [];
+
+  const [historyElement, setHistoryElement] = useState([]);
 
   const handleLogin = async () => {
     // chrome.storage.local.set({
@@ -139,6 +173,12 @@ const App: React.FC<{}> = () => {
   const handleSignup = () => {
     chrome.tabs.create({
       url: "http://3.0.100.46:8000/signUp",
+    });
+  };
+
+  const handleDetail = () => {
+    chrome.tabs.create({
+      url: "http://3.0.100.46:8000/home",
     });
   };
 
@@ -247,15 +287,25 @@ const App: React.FC<{}> = () => {
         </button>
       </div>
 
-      <div className="history-title">History</div>
+      {historyElement.length == 0 && (
+        <div className="container-main_justify_align logoText text-center ">
+          <span className="theme-color">Select Text and Right Click!</span>
+        </div>
+      )}
 
-      <HistoryBox text="dkfaj;dsfkja;dskfjas;ldfjaslkdf" date="20-03-2021" status="Processing"/>
+      {historyElement.length != 0 && (
+        <div className="history-title">History</div>
+      )}
+
+      {/* <HistoryBox text="dkfaj;dsfkja;dskfjas;ldfjaslkdf" date="20-03-2021" status="Processing"/>
       <HistoryBox text="dkfaj;dsfkja;dskfjas;ldfjaslkdf" date="20-03-2021" status="Processed"/>
-      <HistoryBox text="dkfaj;dsfkja;dskfjas;ldfjaslkdf" date="20-03-2021" status="Processed"/>
-
-    
-
-      <div className="text-center theme-color">See All..</div>
+      <HistoryBox text="dkfaj;dsfkja;dskfjas;ldfjaslkdf" date="20-03-2021" status="Processed"/> */}
+      {historyElement}
+      {historyElement.length != 0 && (
+        <div onClick={handleDetail} className="text-center theme-color">
+          See All..
+        </div>
+      )}
     </div>
   );
 
