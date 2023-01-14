@@ -12,10 +12,11 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DownloadIcon from '@mui/icons-material/Download';
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL
+
 
 
 const TextCard = styled(Card)(({ theme }) => ({
@@ -99,11 +100,11 @@ const TitleDivider = styled(Divider)(({ theme }) => ({
 
 const GraphPage = () => {
     const navigate = useNavigate();
-    const params = useParams();
+    const location = useLocation();
+    const current_data_id = location.state.data_id
     const [data, setData] = useState({});
-    const id = params.id
     useEffect(() => {
-        axios.get(`${BACKEND_URL}kge/${id}`)
+        axios.get(`${BACKEND_URL}kge/history${current_data_id}`)
             .then(res => {
                 setData(res.data[0]);
             }).catch(err => { })

@@ -18,7 +18,7 @@ function App() {
         <Route path="/signup" element={<Register />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/home" element={<MainPage />} />
-          <Route path="/kge/:id" element={<GraphPage />} />
+          <Route path="/kge" element={<GraphPage />} />
         </Route>
       </Routes>
     </AuthProvider>

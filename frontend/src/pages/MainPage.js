@@ -44,7 +44,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
 function MainPage() {
     const { user, logoutUser } = useContext(AuthContext);
     const user_id = jwt_decode(localStorage.getItem("authTokens")).user_id;
-
+    const user_name = jwt_decode(localStorage.getItem("authTokens")).username;
     return (
         <>
             <div className='flex flex-row h-screen'>
@@ -63,7 +63,7 @@ function MainPage() {
                         <StyledCard>
                             <div className='flex flex-row h-full items-center'>
                                 <div className='w-1/2'>
-                                    Username12345
+                                    {user_name}
                                 </div>
                                 <div className='w-1/2'>
                                     <ThemeProvider theme={logoutButtonStyle}>
