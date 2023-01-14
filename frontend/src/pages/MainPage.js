@@ -19,7 +19,6 @@ const logoutButtonStyle = createTheme({
                 root: {
                     backgroundColor: '#0C3B2E',
                     color: '#FFF',
-                    fontFamily: 'Source Sans Pro',
                     fontSize: '0.875rem',
                     textTransform: 'capitalize',
                     borderRadius: '8px',
