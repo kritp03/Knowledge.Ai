@@ -9,7 +9,7 @@ const LoginPage = () => {
     useEffect(() => {
         let isAuth = JSON.parse(localStorage.getItem('authTokens'));
         if(isAuth && isAuth !== null) {
-            navigate("/");
+            navigate("/home");
         }
     }, []);
   const { loginUser } = useContext(AuthContext);

@@ -47,7 +47,7 @@ function HistoryTable() {
                 </div>
                 <div className="overflow-y-auto h-5/6">
                     {!isLoading && 
-                    data.map((history, idx) => (
+                    data.reverse().map((history, idx) => (
                         <div key={idx} onClick={() => history_page(history.id)} className="h-16 flex w-full border items-center hover:bg-white hover:cursor-pointer">
                             <div className="w-1/6 text-sm px-2 py-2 ">
                                 {history.date}
