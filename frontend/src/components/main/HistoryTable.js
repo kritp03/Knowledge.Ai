@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
+import { AiFillDelete } from 'react-icons/ai';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL
 
@@ -58,11 +59,13 @@ function HistoryTable() {
                             <div className="w-2/6 text-sm px-2 py-2 truncate">
                                 {history.text}
                             </div>
-                            <div className="w-1/6 text-sm px-2 py-2 ">
+                            <div className={`w-1/6 text-sm px-2 py-2 rounded-full text-gray-600 font-semibold flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease ${history.status === "Processed" ? "bg-green-300" : "bg-red-200"}`}>
                                 {history.status}
                             </div>
                             <div className="w-1/6 text-sm px-2 py-2 ">
-                                Delete
+                                <div className="w-fit mx-auto">
+                                <AiFillDelete size={'1.5em'} color="#D9534F"/>
+                                </div>
                             </div>
                         </div>
                     ))}
