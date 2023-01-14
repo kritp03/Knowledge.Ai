@@ -1,7 +1,16 @@
-// TODO: background script
 chrome.runtime.onInstalled.addListener((details) => {
+
+
   chrome.storage.local.set({
-    credentials: "12444321",
+    auth_token: "",
+  });
+
+  chrome.storage.local.set({
+    user: "",
+  });
+
+  chrome.storage.local.set({
+    email: "",
   });
 
   console.log(details);
@@ -10,12 +19,20 @@ chrome.runtime.onInstalled.addListener((details) => {
     periodInMinutes: 1 / 60,
   });
 
-  // chrome.alarms.onAlarm.addListener((alarm) => {
-  //   console.log("alarm", alarm);
-  //   chrome.storage.local.get("credentials", (res) => {
-  //     console.log(res);
-  //   });
-  // });
+/* A listener that is listening for the alarm to go off. */
+  chrome.alarms.onAlarm.addListener((alarm) => {
+    console.log("alarm", alarm);
+
+    chrome.storage.local.get("auth_token", (res) => {
+      console.log("auth_token");
+      console.log(res);
+    });
+
+    chrome.storage.local.get("user", (res) => {
+      console.log("user");
+      console.log(res);
+    });
+  });
 
   chrome.contextMenus.create({
     title: "Generate Mindmap",

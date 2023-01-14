@@ -13,12 +13,23 @@ body {
   font-size: 2rem;
 }
 
-.container-main {
-  width: 300px;
-  height: 300px;
+.text-center-custom {
+  padding: 10px 0;
+}
+
+.container-main_justify_align {
+  width: 350px;
+  height: 400px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; 
+}
+
+.container-main-justify {
+  width: 350px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
 }
 
 .button-bg-theme-color {
@@ -33,6 +44,14 @@ body {
   background-color: #fafafc;
 }
 
+.border-gray {
+  border-color: #adb5bd;
+}
+
+.bg-gray {
+  background-color: #adb5bd;
+}
+
 .border-theme-color {
   border-color: #7b2cbf;
   background-color: white;
@@ -41,8 +60,44 @@ body {
   text-color: #7b2cbf;
 }
 
+.text-red {
+  color: red;
+}
 
 .bg-yellow {
   background-color: #f7b500;
 
+}
+
+.history-title {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+
+.ellipsis { 
+  text-overflow: ellipsis; 
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.history-box{
+  border-radius: 10px;
+  border: 1px solid #adb5bd;
+  height: 70px;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 10px;
+}
+
+.history-box-sub1{
+  border-radius: 10px;
+  border-bottom: 1px solid #adb5bd;
+  width: 100%;
+  max-width: 300px;
+  padding: 8px;
+}
+
+.history-box-sub2{
+  padding: 8px;
 }
