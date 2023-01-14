@@ -68,7 +68,10 @@ const StyledCard = styled(Card)(({ theme }) => ({
 
 function MainPage() {
   const { height, width } = useWindowDimensions();
-  const locationRef = useRef(null);
+  const locationRef = useRef();
+
+  const locationRefTop = useRef()
+  const locationRefBottom = useRef()
 
   const { user, logoutUser } = useContext(AuthContext);
   const user_id = jwt_decode(localStorage.getItem("authTokens")).user_id;
@@ -78,20 +81,25 @@ function MainPage() {
   const setHeight = () => {
     let y_loc = locationRef.current.offsetTop;
 
-    let topPX = Math.ceil(y_loc) + 5 + 40;
-    let bottomPX = height - topPX;
+    let topPX = Math.ceil(y_loc) + 5 
+    let bottomPX =  height - topPX
+
+    console.log(y_loc, topPX, bottomPX)
 
     setBottomHeight(bottomPX);
   };
 
   useEffect(()=> {
     setHeight();
-  }, [height])
+  }, [height, width])
+
+  useEffect(() => {
+    setHeight();
+  })
 
   return (
-    <>
       <div className="grid grid-cols-1 h-[100%] w-['100%']">
-        <div className="flex mt-[1%] mb-[1%] justify-center h-[80%]">
+        <div ref={locationRefTop} className="flex mt-1 mb-1 justify-center">
           <div className="w-3/5 rounded-xl shadow-md ">
             <div className="">
               <div className="logoText text-center pt-2">
@@ -112,14 +120,15 @@ function MainPage() {
             <div />
             <div
               ref={locationRef}
-              className=" h-[70%] mt-1"
+              style={{ height: bottomHeight }}
+              className=" mt-1"
             >
               <HistoryTable />
             </div>
           </div>
+          <div ref={locationRefBottom} />
         </div>
       </div>
-    </>
   );
 }
 
