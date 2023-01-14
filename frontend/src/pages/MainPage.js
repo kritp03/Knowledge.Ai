@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import {
     Stack,
     styled,
@@ -10,7 +10,7 @@ import {
 import { HistoryTable } from '../components/main/HistoryTable';
 import { TextInput } from '../components/main/TextInput';
 import AuthContext from '../context/AuthContext';
-import { useContext } from "react";
+import jwt_decode from "jwt-decode";
 
 const logoutButtonStyle = createTheme({
     components: {
@@ -43,17 +43,19 @@ const StyledCard = styled(Card)(({ theme }) => ({
 
 function MainPage() {
     const { user, logoutUser } = useContext(AuthContext);
+    const user_id = jwt_decode(localStorage.getItem("authTokens")).user_id;
+
     return (
         <>
-            <div className='flex flex-row'>
+            <div className='flex flex-row h-screen'>
                 <div className='w-1/5'>
                 </div>
-                <div className='flex flex-col w-3/5 ...'>
-                    <div className='basis-1/3'>
+                <div className='w-3/5 ...'>
+                    <div className='h-2/5'>
                         <TextInput />
                     </div>
-                    <div className='basis-2/3'>
-                        <HistoryTable />
+                    <div className='h-3/5'>
+                        <HistoryTable  />
                     </div>
                 </div>
                 <div className='w-1/5'>

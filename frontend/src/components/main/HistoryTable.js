@@ -1,245 +1,74 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import DeleteIcon from '@mui/icons-material/Delete';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TablePagination,
-    TableRow,
-    Card,
-    Box,
-    Chip,
-    ThemeProvider,
-    createTheme,
-    styled,
-} from '@mui/material';
+import axios from 'axios';
+import jwt_decode from "jwt-decode";
 
-const processSuccessful = createTheme({
-    components: {
-        MuiChip: {
-            styleOverrides: {
-                root: {
-                    fontSize: '13px',
-                    backgroundColor: '#e6f9f0',
-                    color: '#00BA34',
-                    borderRadius: '16px',
-                    paddingLeft: '5px',
-                },
-
-            }
-        },
-    }
-});
-
-const processFailed = createTheme({
-    components: {
-        MuiChip: {
-            styleOverrides: {
-                root: {
-                    fontSize: '13px',
-                    backgroundColor: '#fed1f9',
-                    color: '#be29ec',
-                    borderRadius: '16px',
-                    paddingLeft: '5px',
-                }
-            }
-        }
-    }
-});
-
-const deleteStyle = createTheme({
-    components: {
-        MuiChip: {
-            styleOverrides: {
-                root: {
-                    fontSize: '13px',
-                    backgroundColor: '#FFE3EB',
-                    color: '#FF2C2C',
-                    borderRadius: '16px',
-                    paddingLeft: '5px',
-                },
-                icon: {
-                    color: '#FF2C2C',
-                    fontSize: '18px'
-                }
-            }
-        }
-    }
-});
-
-const TableCard = styled(Card)(({ theme }) => ({
-    backgroundColor: '#FAFAFC',
-    padding: '20px 0px 20px 0px',
-    border: '2px solid #F0F2F6',
-    borderRadius: '10px',
-    marginTop: '30px',
-}));
-
-const StyledHeaderCell = styled(TableCell)(({ theme }) => ({
-    fontWeight: '700',
-    fontSize: '0.9rem',
-    color: "#3b5998",
-    borderBottom: 'none',
-}));
-
-const StyledBodyCell = styled(TableCell)(({ theme }) => ({
-    fontWeight: '700',
-    lineHeight: '1.57143',
-    fontSize: '0.875rem',
-    color: '#0F1726',
-}));
-
-const tableHeaderStyle = createTheme({
-    components: {
-        MuiTableCell: {
-            styleOverrides: {
-                root: {
-                    backgroundColor: '#F5F5F5',
-                    "&:first-child": {
-                        borderTopLeftRadius: "20px",
-                        borderBottomLeftRadius: "20px"
-                      },
-                      "&:last-child": {
-                        borderTopRightRadius: "20px",
-                        borderBottomRightRadius: "20px"
-                      }
-                }
-            }
-        },
-    },
-});
-
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL
 
 function HistoryTable() {
+    const user_id = jwt_decode(localStorage.getItem("authTokens")).user_id;
+    const navigate = useNavigate()
 
-    const navigate = useNavigate();
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
-    const [historyData, setHistoryData] = useState([
-        {
-            id: 0,
-            title: 'Title 1',
-            date: '12/11/2021 16:23',
-            status: 'Successful',
-            text: "Lorem Ipsum...",
-        },
-        {
-            id: 1,
-            title: 'Title 2',
-            date: '23/12/2021 12:01',
-            status: 'Unsuccessful',
-            text: "Lorem Ipsum...",
-        },
-        {
-            id: 2,
-            title: 'Title 3',
-            date: '12/11/2021 11:10',
-            status: 'Successful',
-            text: "Lorem Ipsum...",
-        },
-        {
-            id: 3,
-            title: 'Title 4',
-            date: '23/12/2021 10:24',
-            status: 'Unsuccessful',
-            text: "Lorem Ipsum...",
-        },
-        {
-            id: 4,
-            title: 'Title 5',
-            date: '12/11/2021 9:50',
-            status: 'Successful',
-            text: "Lorem Ipsum...",
-        },
-        {
-            id: 5,
-            title: 'Title 6',
-            date: '23/12/2021 22:54',
-            status: 'Unsuccessful',
-            text: "Lorem Ipsum...",
-        },
-    ])
+    const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const handleChangePage = (_, newPage) => {
-        setPage(newPage);
-    };
-    
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
+    useEffect(() => {
+        axios.get(`${BACKEND_URL}kge/`, { params: { user_id: user_id } })
+            .then(res => {
+                setData(res.data);
+                setIsLoading(false);
+            }).catch(err => { })
+    }, [])
 
-    const handleSelectedRow = (id) => {
-        console.log(id);
-        navigate('/graph', {
-            state: { data_id: id }
-        })
+    const history_page = (e) => {
+        window.location.assign(`http://localhost:3000/kge/${e}`)
     }
-    
-    return(
-        <TableCard elevation={0}>
-            {/* <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ marginRight: '30px' }}>
-                <Title>History</Title>
-            </Stack> */}
-            {/* <TitleDivider sx={{ borderBottomWidth: 0 }} /> */}
-            <Box overflow="auto" sx={{ pt: 2, pl: 4, pb: 2, pr: 4 }}>
-                <Table elevation={0}>
-                    <ThemeProvider theme={tableHeaderStyle}>
-                        <TableHead>
-                            <TableRow>
-                                <StyledHeaderCell>Date</StyledHeaderCell>
-                                <StyledHeaderCell>Title</StyledHeaderCell>
-                                <StyledHeaderCell>Text</StyledHeaderCell>
-                                <StyledHeaderCell>Status</StyledHeaderCell>
-                                <StyledHeaderCell></StyledHeaderCell>
-                            </TableRow>
-                        </TableHead>
-                    </ThemeProvider>
-                    <TableBody>
-                        {historyData
-                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map((item, index) => (
-                            <TableRow key={index}  onClick={() => handleSelectedRow(item.id)} style={{cursor: 'pointer'}} hover>
-                                <StyledBodyCell>{item.date}</StyledBodyCell>
-                                <StyledBodyCell>{item.title}</StyledBodyCell>
-                                <StyledBodyCell>{item.text}</StyledBodyCell>
-                                <StyledBodyCell>
-                                    {item.status == 'Successful' ? (
-                                        <ThemeProvider theme={processSuccessful}>
-                                            <Chip label="Processed" sx={{padding: 0}} />
-                                        </ThemeProvider>
-                                    ) : (
-                                        <ThemeProvider theme={processFailed}>
-                                            <Chip label="Not Processed" sx={{padding: 0}} />
-                                        </ThemeProvider>
-                                    )}
-                                </StyledBodyCell>
-                                <StyledBodyCell>
-                                    <ThemeProvider theme={deleteStyle}>
-                                        <Chip onClick="" icon={<DeleteIcon />} sx={{'& .MuiChip-label': {padding: 1}}} clickable/>
-                                    </ThemeProvider>
-                                </StyledBodyCell>
-                            </TableRow>
-                            ))}
-                    </TableBody>
-                </Table>
+    return (
+        <div className="h-full">
+            <div className="w-full h-full bg-gray-100 px-10">
+                <div className="h-1/6 flex bg-gray-200 rounded-xl items-center">
+                    <div className="w-1/6 px-3 text-gray-600 font-bold text-sm">
+                        Date
+                    </div>
+                    <div className="w-1/6 px-3 text-gray-600 font-bold text-sm">
+                        Title
+                    </div>
+                    <div className="w-2/6 px-3 text-gray-600 font-bold text-sm">
+                        Text
+                    </div>
+                    <div className="w-1/6 px-3 text-gray-600 font-bold text-sm">
+                        Status
+                    </div>
+                    <div className="w-1/6 px-3 text-gray-600 font-bold text-sm">
 
-                <TablePagination
-                    sx={{ px: 2 }}
-                    page={page}
-                    component="div"
-                    rowsPerPage={rowsPerPage}
-                    count={historyData.length}
-                    onPageChange={handleChangePage}
-                    rowsPerPageOptions={[5, 10, 25]}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    nextIconButtonProps={{ "aria-label": "Next Page" }}
-                    backIconButtonProps={{ "aria-label": "Previous Page" }}
-                />
-            </Box>
-        </TableCard>
+                    </div>
+                </div>
+                <div className="overflow-y-auto h-5/6">
+                    {!isLoading && 
+                    data.map((history, idx) => (
+                        <div key={idx} onClick={() => history_page(history.id)} className="h-16 flex w-full border items-center hover:bg-white hover:cursor-pointer">
+                            <div className="w-1/6 text-sm px-2 py-2 ">
+                                {history.date}
+                            </div>
+                            <div className="w-1/6 text-sm px-2 py-2 ">
+                                {history.title}
+                            </div>
+                            <div className="w-2/6 text-sm px-2 py-2 truncate">
+                                {history.text}
+                            </div>
+                            <div className="w-1/6 text-sm px-2 py-2 ">
+                                {history.status}
+                            </div>
+                            <div className="w-1/6 text-sm px-2 py-2 ">
+                                Delete
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+            </div>
+        </div>
+
     );
 }
 
