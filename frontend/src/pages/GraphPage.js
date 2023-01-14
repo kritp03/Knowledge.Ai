@@ -6,8 +6,6 @@ import {
     ThemeProvider,
     Button,
     createTheme,
-    IconButton,
-    Icon,
     Typography,
     Divider,
     Stack,
@@ -25,7 +23,6 @@ const TextCard = styled(Card)(({ theme }) => ({
     height: '100%',
     fontSize: 16,
     fontWeight: 'semi-bold',
-    fontFamily: 'Source Sans Pro',
 }));
 
 const backButtonStyle = createTheme({
@@ -35,7 +32,6 @@ const backButtonStyle = createTheme({
                 root: {
                     backgroundColor: '#FFF',
                     color: '#0F1726',
-                    fontFamily: 'Source Sans Pro',
                     fontSize: '0.875rem',
                     fontWeight: '600',
                     textTransform: 'capitalize',
@@ -53,18 +49,18 @@ const backButtonStyle = createTheme({
     }
 });
 
-const reportIssueStyle = createTheme({
+const downloadGraphStyle = createTheme({
     components: {
         MuiButton: {
             styleOverrides: {
                 root: {
                     backgroundColor: '#66AA66',
                     color: '#FFF',
-                    fontFamily: 'Source Sans Pro',
                     fontSize: '0.875rem',
                     textTransform: 'capitalize',
                     borderRadius: '8px',
                     width: '100%',
+                    marginTop: '30px',
                     '&:hover': {
                         backgroundColor: '#30592f',
                         boxShadow: 'none',
@@ -75,33 +71,17 @@ const reportIssueStyle = createTheme({
     },
 });
 
-const logoutButtonStyle = createTheme({
-    components: {
-        MuiButton: {
-            styleOverrides: {
-                root: {
-                    backgroundColor: '#0C3B2E',
-                    color: '#FFF',
-                    fontFamily: 'Source Sans Pro',
-                    fontSize: '0.875rem',
-                    textTransform: 'capitalize',
-                    borderRadius: '8px',
-                    width: '100px',
-                    '&:hover': {
-                        backgroundColor: '#0A3529',
-                        boxShadow: 'none',
-                    },
-                }
-            }
-        }
-    },
-});
-
 const Title = styled(Typography)(({ theme }) => ({
-    fontFamily: 'DM Sans Medium',
     fontWeight: '900',
     fontSize: '1.3rem',
     color: '#0F1726',
+    padding: '0',
+}));
+
+const ReportIssue = styled(Typography)(({ theme }) => ({
+    fontWeight: '900',
+    fontSize: '0.8rem',
+    color: '#0073FF',
     padding: '0',
 }));
 
@@ -118,7 +98,7 @@ function GraphPage() {
     return (
         <div className='flex flex-row w-full'>
             <div className='w-2/5'>
-                <div className='flex flex-col h-full'>
+                <div className='flex flex-col h-screen'>
                     <div className='h-1/10'>
                         <ThemeProvider theme={backButtonStyle}>
                             <Button onClick={() => {
@@ -129,7 +109,7 @@ function GraphPage() {
                             </Button>
                         </ThemeProvider>
                     </div>
-                    <div className='h-7/10'>
+                    <div className='h-7/10 h-screen'>
                         <TextCard>
                             <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ marginRight: '30px' }}>
                                 <Title>Title of Text</Title>
@@ -155,16 +135,18 @@ function GraphPage() {
                             self-attention and discuss its advantages over models such as [17, 18] and [9]
                         </TextCard>
                     </div>
-                    <div className='h-1/10'>
-                        <ThemeProvider theme={reportIssueStyle}>
+                    <div className='h-1/10 mx-auto'>
+                        <ThemeProvider theme={downloadGraphStyle}>
                             <Button>
                                 <DownloadIcon />
                                 Download Knowledge Map
                             </Button>
                         </ThemeProvider>
                     </div>
-                    <div className='h-1/10'>
-                        Report an issue
+                    <div className='h-1/10 mx-auto  '>
+                        <ReportIssue>
+                            Report an issue
+                        </ReportIssue>
                     </div>
                 </div>
             </div>

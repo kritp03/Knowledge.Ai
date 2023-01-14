@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
-    Stack,
     Table,
     TableBody,
     TableCell,
@@ -10,10 +9,7 @@ import {
     TablePagination,
     TableRow,
     Card,
-    Typography,
-    Divider,
     Box,
-    IconButton,
     Chip,
     ThemeProvider,
     createTheme,
@@ -25,7 +21,6 @@ const processSuccessful = createTheme({
         MuiChip: {
             styleOverrides: {
                 root: {
-                    fontFamily: 'Source Sans Pro',
                     fontSize: '13px',
                     backgroundColor: '#e6f9f0',
                     color: '#00BA34',
@@ -43,7 +38,6 @@ const processFailed = createTheme({
         MuiChip: {
             styleOverrides: {
                 root: {
-                    fontFamily: 'Source Sans Pro',
                     fontSize: '13px',
                     backgroundColor: '#fed1f9',
                     color: '#be29ec',
@@ -60,7 +54,6 @@ const deleteStyle = createTheme({
         MuiChip: {
             styleOverrides: {
                 root: {
-                    fontFamily: 'Source Sans Pro',
                     fontSize: '13px',
                     backgroundColor: '#FFE3EB',
                     color: '#FF2C2C',
@@ -84,23 +77,7 @@ const TableCard = styled(Card)(({ theme }) => ({
     marginTop: '30px',
 }));
 
-const Title = styled(Typography)(({ theme }) => ({
-    fontFamily: 'DM Sans Medium',
-    fontWeight: '900',
-    fontSize: '1rem',
-    color: '#0F1726',
-    padding: '0px 30px',
-}));
-
-const TitleDivider = styled(Divider)(({ theme }) => ({
-    marginTop: '15px',
-    background: '#F4F3F7',
-    width: '100%',
-    height: '2px'
-}));
-
 const StyledHeaderCell = styled(TableCell)(({ theme }) => ({
-    fontFamily: 'DM Sans',
     fontWeight: '700',
     fontSize: '0.9rem',
     color: "#3b5998",
@@ -108,7 +85,6 @@ const StyledHeaderCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledBodyCell = styled(TableCell)(({ theme }) => ({
-    fontFamily: 'DM Sans',
     fontWeight: '700',
     lineHeight: '1.57143',
     fontSize: '0.875rem',

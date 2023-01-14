@@ -65,46 +65,6 @@ function KnowledgeMap() {
         }
     }
 
-    // const options = {
-    //     layout: {
-    //         improvedLayout: true,
-    //         hierarchical: {
-    //             enabled: true,
-    //             direction: 'UD',
-    //             sortMethod: 'directed',
-    //         }
-    //     },
-    //     edges: {
-    //         color: "#03a1fc",
-    //         smooth: {
-    //             enabled: true,
-    //             // type: 'continuous',
-    //             // forceDirection: 'none',
-    //             roundness: 1.0
-    //         },
-    //     },
-    //     nodes: {
-    //         shape: "circle"
-    //     },
-    //     height: "900px",
-    //     width: "100%",
-    //     physics: {
-    //         enabled: true,
-    //         barnesHut: {
-    //             springConstant: 0.05,
-    //             avoidOverlap: 0.1,
-    //         },
-    //         hierarchicalRepulsion: {
-    //             nodeDistance: 200,
-    //             centralGravity: 0.2,
-    //             springLength: 200,
-    //             springConstant: 0.05,
-    //             damping: 0.09,
-    //         },
-    //         solver: 'hierarchicalRepulsion',
-    //     }
-    // };
-
     const events = {
         select: function (event) {
             var { nodes, edges } = event;
@@ -115,9 +75,6 @@ function KnowledgeMap() {
             graph={graph}
             options={options}
             events={events}
-        // getNetwork={network => {
-        //     //  if you want access to vis.js network api you can set the state in a parent component using this property
-        // }}
         />
     );
 }
