@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import HttpResponse
+from rest_framework import status
 from .models import *
 from rest_framework.permissions import AllowAny
 
@@ -20,6 +21,9 @@ from rest_framework.permissions import AllowAny
 class Home(APIView):
     permission_classes = (AllowAny,)
     def post(self, request):
+        if "delete" in request.data:
+            Data.objects.filter(pk=request.data['data_id']).delete()
+            return Response("", status=status.HTTP_204_NO_CONTENT)
         data = request.data["data"]
         user_id = request.data["user_id"]
         n = Data.objects.create(data=data, user_id=user_id, overall_status="Processing")
