@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener((details) => {
-
+  const BACKEND_URL = "http://3.0.100.46:8000/";
 
   chrome.storage.local.set({
     auth_token: "",
@@ -43,14 +43,32 @@ chrome.runtime.onInstalled.addListener((details) => {
   chrome.contextMenus.onClicked.addListener((event) => {
 
 
-    chrome.storage.local.get("auth_token", (res) => {
+    chrome.storage.local.get("auth_token",(res) => {
       if (res.auth_token !== '') {
         console.log(event);
         console.log(event.selectionText)
         
         let selectionText = event.selectionText
 
-        
+        fetch(BACKEND_URL + "kge/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user_id: 1,
+            data: selectionText,
+          })
+        }).then((response) => {
+          if (response.status == 200) {
+            console.log('Success:', response);
+          }
+          console.log(response.status)
+        }) 
+
+
+
+
       }
       else {
         console.log("Please login to generate mindmap")
