@@ -70,7 +70,6 @@ while True:
                                 'to': list(i['id'] for i in nodes if i['label'] == r['tail'])[0],
                                 'label': r['type'],
                                 'title': r['type'],
-                                'smooth': {'type': 'curvedCW', 'roundness': 0.2}
                             }
                         )
                 print(edges)
