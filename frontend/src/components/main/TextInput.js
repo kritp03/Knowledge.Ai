@@ -26,12 +26,12 @@ function TextInput() {
 
     return (
         <div className='h-full'>
-            <div className='bg-gray-100 h-full py-6'>
+            <div className=' h-full py-2'>
                 <div className='w-5/6 mx-auto h-4/6 items-center'>
                     <textarea className="h-full overflow-y-auto resize-none w-full border border-gray-400 rounded-md px-2 py-2 hover:border-purple text-black text-sm" value={data} onChange={e => setData(e.target.value)} />
                 </div>
-                <div className='h-2/6 flex justify-center items-center'>
-                    <button onClick={upload_data} className="text-white bg-green-600 items-center py-2 px-10 hover:bg-green-700 drop-shadow-2xl rounded-lg">GENERATE</button>
+                <div className='pt-2 flex justify-center items-center'>
+                    <button onClick={upload_data} className="text-white bg-theme items-center py-2 px-10  drop-shadow-md rounded-lg">GENERATE</button>
                 </div>
             </div>
         </div>
