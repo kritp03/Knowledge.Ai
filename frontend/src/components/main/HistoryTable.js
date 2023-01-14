@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
 
@@ -21,7 +21,9 @@ function HistoryTable() {
     }, [])
 
     const history_page = (e) => {
-        window.location.assign(`http://localhost:3000/kge/${e}`)
+        navigate('/kge', {
+            state: { data_id: e }
+          });
     }
     return (
         <div className="h-full">
