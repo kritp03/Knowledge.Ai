@@ -1,0 +1,21 @@
+body {
+    height: 300px;
+    width: 300px;
+  }
+
+.logo {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.bg-yellow{
+    background-color: yellow;
+}
+
+.bg-green {
+    background-color: green;
+}
+
+.w-100per {
+    width: 100%;
+}

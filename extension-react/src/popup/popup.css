@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+body {
+  background-color: #1c1c1c;
+}
+
+.logoText {
+  font-family: 'Secular One', sans-serif;
+  font-size: 2rem;
+}
+
+.container-main {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-bg-theme-color {
+  background-color: #7b2cbf;
+}
+
+.theme-color {
+  color: #7b2cbf;
+}
+
+.bg-theme-color {
+  background-color: #fafafc;
+}
+
+.border-theme-color {
+  border-color: #7b2cbf;
+  background-color: white;
+  border-width: 2px;
+  color: #7b2cbf;
+  text-color: #7b2cbf;
+}
+
+
+.bg-yellow {
+  background-color: #f7b500;
+
+}
