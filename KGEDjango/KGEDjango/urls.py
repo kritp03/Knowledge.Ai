@@ -26,6 +26,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('', views.login),
     path('home/', views.home),
+    path('signUp/', views.signup),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

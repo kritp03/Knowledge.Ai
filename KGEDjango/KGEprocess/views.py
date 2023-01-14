@@ -26,3 +26,25 @@ class Home(APIView):
         n_id = n.data_id
         Queue.objects.create(status=1, data_id=n_id)
         return Response("Success")
+
+    def get(self, request):
+        user_id = request.query_params['user_id']
+        output = [{"id": output.data_id,
+                    "date": output.date.strftime("%Y-%m-%d %H:%M"),
+                    "title": output.title,
+                    "text": output.data,
+                    "status": output.overall_status}
+                    for output in Data.objects.filter(user_id=user_id)]
+        return Response(output)
+
+class History(APIView):
+    permission_classes = (AllowAny,)
+    def get(self, request, id):
+        output = [{"id": output.data_id,
+                    "date": output.date.strftime("%Y-%m-%d %H:%M"),
+                    "title": output.title,
+                    "text": output.data,
+                    "text_json": output.data_json,
+                    "status": output.overall_status}
+                    for output in Data.objects.filter(data_id=id)]
+        return Response(output)
