@@ -38,7 +38,7 @@ const LoginPage = () => {
               type="text"
               placeholder="Username"
               id="username"
-              className="  block w-full px-4 h-14 py-2 mt-2 bg-[#F8F8F8] font-black border rounded-md focus:border-purple focus:ring-purple focus:outline-none focus:ring focus:ring-opacity-40"
+              className="hover:border-purple-200 border-2 block w-full px-4 h-14 py-2 mt-2 bg-[#F8F8F8] font-black border rounded-md focus:border-purple focus:ring-purple focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
           <div className="mb-8">
@@ -50,12 +50,12 @@ const LoginPage = () => {
               type="password"
               placeholder="Password"
               id="password"
-              className="  block w-full px-4 h-14 py-2 mt-2 bg-[#F8F8F8]  border rounded-md font-black focus:border-purple focus:ring-purple focus:outline-none focus:ring focus:ring-opacity-40"
+              className="hover:border-purple-200 border-2 block w-full px-4 h-14 py-2 mt-2 bg-[#F8F8F8]  border rounded-md font-black focus:border-purple focus:ring-purple focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
           <div className="mt-6">
 
-            <button className="w-3/4 border mx-auto block h-16 text-2xl border-purple-600 font-black px-4 py-2 tracking-wide text-purple-600 transition-colors duration-200 transform bg-purple hover:text-white rounded-md hover:bg-purple-500 focus:outline-none focus:bg-purple-600">
+            <button className="shadow-xl w-3/4 border mx-auto block h-16 text-2xl border-purple-600 font-black px-4 py-2 tracking-wide text-purple-600 transition-colors duration-200 transform bg-purple hover:text-white rounded-md hover:bg-purple-500 focus:outline-none focus:bg-purple-600">
               Log in
             </button>
 
