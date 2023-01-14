@@ -56,28 +56,6 @@ const backButtonStyle = createTheme({
     }
 });
 
-const downloadGraphStyle = createTheme({
-    components: {
-        MuiButton: {
-            styleOverrides: {
-                root: {
-                    backgroundColor: '#66AA66',
-                    color: '#FFF',
-                    fontSize: '0.875rem',
-                    textTransform: 'capitalize',
-                    borderRadius: '8px',
-                    width: '100%',
-                    margin: '30px 0px 10px 0px',
-                    '&:hover': {
-                        backgroundColor: '#30592f',
-                        boxShadow: 'none',
-                    },
-                }
-            }
-        }
-    },
-});
-
 const Title = styled(Typography)(({ theme }) => ({
     fontWeight: '900',
     fontSize: '1.3rem',
@@ -149,14 +127,6 @@ const onSubmit = () => {
                                 <ReportIssue className='absolute bottom-1 hover:cursor-pointer' onClick={() => {setIsModalOpen(true)}}>Report an issue</ReportIssue>
                             </Stack>
                         </TextCard>
-                    </div>
-                    <div className='h-10 mx-auto'>
-                        <ThemeProvider theme={downloadGraphStyle}>
-                            <Button>
-                                <DownloadIcon />
-                                Download Knowledge Map
-                            </Button>
-                        </ThemeProvider>
                     </div>
                 </div>
             </div>
