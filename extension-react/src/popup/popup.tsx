@@ -101,7 +101,7 @@ const App: React.FC<{}> = () => {
           test: res.data,
         });
         let tempHistoryElement: any = [];
-        let currentList = res.data.reverse();
+        let currentList = res.data
         for (let i = 0; i < currentList.length; i++) {
           tempHistoryElement.push(
             <HistoryBox
