@@ -24,12 +24,12 @@ chrome.runtime.onInstalled.addListener((details) => {
   });
 
 
-  chrome.alarms.onAlarm.addListener((alarm) => {
-    chrome.storage.local.get("test", (res) => {
-      console.log("test");
-      console.log(res.test);
-    });
-  });
+  // chrome.alarms.onAlarm.addListener((alarm) => {
+  //   chrome.storage.local.get("test", (res) => {
+  //     console.log("test");
+  //     console.log(res.test);
+  //   });
+  // });
 
   chrome.contextMenus.create({
     title: "Generate Mindmap",
