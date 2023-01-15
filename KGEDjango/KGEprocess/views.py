@@ -38,7 +38,7 @@ class Home(APIView):
                     "title": output.title,
                     "text": output.data,
                     "status": output.overall_status}
-                    for output in Data.objects.filter(user_id=user_id)]
+                    for output in Data.objects.filter(user_id=user_id).order_by('-date')]
         return Response(output)
 
 class History(APIView):

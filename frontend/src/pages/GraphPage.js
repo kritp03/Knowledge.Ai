@@ -90,17 +90,17 @@ const GraphPage = () => {
             }).catch(err => { })
     }, [])
 
-const onClose = () => {
-    setIsModalOpen(false);
-}
+    const onClose = () => {
+        setIsModalOpen(false);
+    }
 
-const onSubmit = () => {
-    setIsModalOpen(false);
-}
+    const onSubmit = () => {
+        setIsModalOpen(false);
+    }
 
     return (
         <div className='flex flex-row w-full'>
-            {isModalOpen && <Modal isOpen={isModalOpen} onClose={onClose} onSubmit={onSubmit}/>}
+            {isModalOpen && <Modal isOpen={isModalOpen} onClose={onClose} onSubmit={onSubmit} />}
             <div className='w-2/5 ml-5'>
                 <div className='flex flex-col h-screen'>
                     <div className='h-5'>
@@ -116,22 +116,24 @@ const onSubmit = () => {
                     <div className='h-85'>
                         <TextCard className="relative">
                             <Stack direction="row" alignItems="center" justifyContent="space-between">
-                                <Title>Title of Text</Title>
+                                <div className="logoText text-center text-xs">
+                                    <span className="theme-color">Knowledge</span>.Ai
+                                </div>
                             </Stack>
                             <TitleDivider sx={{ borderBottomWidth: 0 }} />
-                            <div className='text-justify overflow-y-auto h-[90%]'>
+                            <div className='text-justify overflow-y-auto h-[90%] px-4'>
                                 {data.text}
                             </div>
                             <TitleDivider sx={{ borderBottomWidth: 0 }} className="absolute bottom-7" />
                             <Stack direction="row" className="justify-center">
-                                <ReportIssue className='absolute bottom-1 hover:cursor-pointer' onClick={() => {setIsModalOpen(true)}}>Report an issue</ReportIssue>
+                                <ReportIssue className='absolute bottom-1 hover:cursor-pointer' onClick={() => { setIsModalOpen(true) }}>Report an issue</ReportIssue>
                             </Stack>
                         </TextCard>
                     </div>
                 </div>
             </div>
             <div className='w-3/5'>
-                <KnowledgeMap data_json={data.text_json}/>
+                <KnowledgeMap data_json={data.text_json} />
             </div>
         </div>
     );
