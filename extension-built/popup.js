@@ -202,7 +202,7 @@ const App = () => {
                 test: res.data,
             });
             let tempHistoryElement = [];
-            let currentList = res.data.reverse();
+            let currentList = res.data;
             for (let i = 0; i < currentList.length; i++) {
                 tempHistoryElement.push(react__WEBPACK_IMPORTED_MODULE_0__.createElement(HistoryBox, { text: currentList[i]["text"], date: currentList[i]["date"], status: currentList[i]["status"], onClick: handleDetail }));
             }
