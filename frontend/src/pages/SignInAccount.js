@@ -1,32 +1,32 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-    useEffect(() => {
-        let isAuth = JSON.parse(localStorage.getItem('authTokens'));
-        if(isAuth && isAuth !== null) {
-            navigate("/home");
-        }
-    }, []);
+  useEffect(() => {
+    let isAuth = JSON.parse(localStorage.getItem('authTokens'));
+    if (isAuth && isAuth !== null) {
+      navigate("/home");
+    }
+  }, []);
   const { loginUser } = useContext(AuthContext);
   const handleSubmit = e => {
     e.preventDefault();
     const username = e.target.username.value;
     const password = e.target.password.value;
     username.length > 0 && loginUser(username, password);
-  
+
   };
 
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden min-w-[300px] md:w-full">
       <div className="w-full p-6 m-auto bg-white rounded-xl shadow-md lg:max-w-xl ">
-      <div className="logoText text-center ">
-            <span className="theme-color">Knowledge</span>.Ai
-          </div>
+        <div className="logoText text-center ">
+          <span className="theme-color">Knowledge</span>.Ai
+        </div>
         <h2 className="text-xl font-black text-center m-2">
           Log in to enjoy the Knowledge.AI!
         </h2>

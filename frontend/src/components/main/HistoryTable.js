@@ -54,15 +54,15 @@ function HistoryTable() {
                 </div>
                 <div className="overflow-y-auto h-5/6">
                     {!isLoading &&
-                        data.reverse().map((history, idx) => (
+                        data.map((history, idx) => (
                             <div key={idx} className="h-16 flex w-full border items-center hover:bg-gray-200 hover:cursor-pointer bg-gray-100">
-                                <div className="w-1/6 text-sm px-2 py-2 ">
+                                <div onClick={() => history_page(history.id)} className="w-1/6 text-sm px-2 py-2 ">
                                     {history.date}
                                 </div>
                                 <div onClick={() => history_page(history.id)}  className="w-3/6 text-sm px-2 py-2 truncate">
                                     {history.text}
                                 </div>
-                                <div className={`w-1/6 text-sm px-2 py-2 rounded-lg  font-semibold flex align-center w-max cursor-pointer 
+                                <div onClick={() => history_page(history.id)} className={`w-1/6 text-sm px-2 py-2 rounded-lg  font-semibold flex align-center w-max cursor-pointer 
                                 text-white active:bg-gray-300 transition duration-300 ease ${history.status === "Processed" ? "bg-green-500" : "bg-red-300"}`}>
                                     {history.status}
                                 </div>
